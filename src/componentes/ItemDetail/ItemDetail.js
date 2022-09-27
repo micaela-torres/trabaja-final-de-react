@@ -3,12 +3,16 @@ import CardGroup from 'react-bootstrap/CardGroup';
 import ItemCount from '../ItemCount/ItemCount';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { useCartContext } from '../../context/cartContext';
 
 const ItemDetail = ({ detail }) => {
     const [encarrito, setEncarrito] = useState(false);
+    const { addItem } = useCartContext();
 
     const onAdd = (comprados) => {
         setEncarrito(true);
+        addItem(detail, comprados);
+
     }
     console.log(detail)
 
