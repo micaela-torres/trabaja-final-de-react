@@ -1,4 +1,4 @@
-import { productos } from "../../api/productos";
+import { getFirestore, collection, getDocs } from "firebase/firestore";
 import { useState, useEffect } from "react";
 import ItemList from "../ItemList/ItemList";
 import { useParams } from "react-router-dom";
@@ -8,20 +8,12 @@ const ItemListContainer = () => {
     const { marcaid } = useParams();
 
     useEffect(() => {
-        const getProducts = new Promise((resolve, reject) => {
-            setTimeout(() => {
-                resolve(productos);
-            },);
-        });
-        getProducts.then((resultado) => {
-            if (marcaid) {
-                const productofiltrado = resultado.filter((prod) => prod.marca === marcaid);
-                setProducts(productofiltrado);
-            } else {
-                setProducts(resultado);
-            }
-        });
-    }, [marcaid]);
+        const querydb = getFirestore();
+        const queryCollection = collection(querydb, 'Productos');
+        getDocs(queryCollection)
+            .then(res => setProducts(res.doct.map(producto => ({ id: producto.id, ...producto.products() }))))
+
+    }, []);
 
     return (
         <>

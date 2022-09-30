@@ -8,13 +8,13 @@ const cartProvider = ({ children }) => {
 
     const [cart, setCart] = useState([]);
 
-    const agregarproducto = (item, omprados) => {
+    const agregarproducto = (item, comprados) => {
         if (isInCart(item.codigo)) {
             setCart(cart.map(producto => {
-                return producto.codigo === item.codigo ? { ...producto, omprados: producto.omprados + omprados } : producto
+                return producto.codigo === item.codigo ? { ...producto, omprados: producto.comprados + comprados } : producto
             }));
         } else {
-            setCart([...cart, { ...item, omprados }]);
+            setCart([...cart, { ...item, comprados }]);
         }
     };
 
@@ -22,7 +22,7 @@ const cartProvider = ({ children }) => {
         return cart.reduce((a, b) => a + b.omprados * b.precio, 0);
     };
 
-    const preciodeproductos = () => cart.reduce((c, actualproducto) => c + actualproducto.omprados, 0);
+    const preciodeproductos = () => cart.reduce((c, actualproducto) => c + actualproducto.comprados, 0);
 
     const limpiarcarrito = () => setCart([]);
 

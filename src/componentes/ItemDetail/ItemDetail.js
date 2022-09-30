@@ -5,26 +5,27 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useCartContext } from '../../context/cartContext';
 
-const ItemDetail = ({ detail }) => {
+const ItemDetail = ({ product }) => {
     const [encarrito, setEncarrito] = useState(false);
     const { addItem } = useCartContext();
 
     const onAdd = (comprados) => {
         setEncarrito(true);
-        addItem(detail, comprados);
+        addItem(product, comprados);
 
     }
-    console.log(detail)
+    console.log(product)
 
     return (
         <div>
+
             <CardGroup>
                 <Card>
                     <Card.Img variant="top" src="holder.js/100px160" />
                     <Card.Body>
-                        <Card.Title>Producto: {detail.producto}</Card.Title>
-                        <Card.Text>{detail.descripcion}</Card.Text>
-                        <Card.Text>$ {detail.precio}</Card.Text>
+                        <Card.Title>Producto: {product.producto}</Card.Title>
+                        <Card.Text>{product.descripcion}</Card.Text>
+                        <Card.Text>$ {product.precio}</Card.Text>
                         {
                             encarrito
                                 ? <Link to="/carrito">Terminar compra</Link>
@@ -34,7 +35,7 @@ const ItemDetail = ({ detail }) => {
 
                     </Card.Body>
                     <Card.Footer>
-                        <small className="text-muted">Codigo: {detail.codigo}</small>
+                        <small className="text-muted">Codigo: {product.codigo}</small>
                     </Card.Footer>
                 </Card>
             </CardGroup>
