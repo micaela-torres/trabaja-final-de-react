@@ -1,5 +1,5 @@
-import { getFirestore, collection, getDocs } from "firebase/firestore";
 import { useState, useEffect } from "react";
+import { getFirestore, collection, getDocs, query, where } from "firebase/firestore";
 import ItemList from "../ItemList/ItemList";
 import { useParams } from "react-router-dom";
 
@@ -8,12 +8,18 @@ const ItemListContainer = () => {
     const { marcaid } = useParams();
 
     useEffect(() => {
-        const querydb = getFirestore();
-        const queryCollection = collection(querydb, 'Productos');
-        getDocs(queryCollection)
-            .then(res => setProducts(res.doct.map(producto => ({ id: producto.id, ...producto.products() }))))
+        const database = getFirestore();
+        const dataCollection = collection(database, 'Productos');
+        if (marcaid) {
+            const dataFilter = query(dataCollection, where("marcaid", "===", marcaid))
+            getDocs(dataFilter)
+                .then(res => setProducts(res.docs.map(productos => ({ id: productos.id, ...productos.data }))))
+        } else {
+            getDocs(dataCollection)
+                .then(res => setProducts(res.docs.map(productos => ({ id: productos.id, ...productos.data }))))
+        }
 
-    }, []);
+    }, [marcaid]);
 
     return (
         <>
