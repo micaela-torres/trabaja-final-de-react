@@ -1,11 +1,12 @@
 import React from "react";
 import { Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import { useCartContext } from "../../context/cartContext";
-
+import { useCartContext } from "../../context/CartContext";
 
 
 export const CartWidget = () => {
+
+    const { ProductosComprados } = useCartContext();
 
 
     return (
@@ -19,6 +20,7 @@ export const CartWidget = () => {
                     <path d="M6 5l14 1l-1 7h-13" />
                 </svg></Button>
             </Link>
+            <span>{ProductosComprados() || ""}</span>
 
         </div >
     )

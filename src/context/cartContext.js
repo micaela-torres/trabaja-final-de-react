@@ -1,45 +1,45 @@
-import React from "react";
-import { useState, useContext } from "react";
-export const CartContext = React.createContext([]);
+import React, { useState, useContext } from 'react'
+
+const CartContext = React.createContext([]);
+
 export const useCartContext = () => useContext(CartContext);
 
-
 const CartProvider = ({ children }) => {
+    const [cart, setCart] = useState([])
 
-    const [cart, setCart] = useState([]);
-
-    const agregarproducto = (item, comprados) => {
-        if (isInCart(item.id)) {
-            setCart(cart.map(producto => {
-                return producto.id === item.id ? { ...producto, comprados: producto.comprados + comprados } : producto
+    const AgregarCarrito = (item, comprados) => {
+        if (EnElCarrito(item.id)) {
+            setCart(cart.map(product => {
+                return product.id === item.id ? { ...product, comprados: product.comprados + comprados } : product
             }));
         } else {
             setCart([...cart, { ...item, comprados }]);
         }
-    };
+    }
 
-    const preciofinal = () => {
-        return cart.reduce((a, b) => a + b.comprados * b.Precio, 0);
-    };
+    const EliminarCarrito = () => setCart([]);
 
-    const preciodeproductos = () => cart.reduce((c, actualProducto) => c + actualProducto.comprados, 0);
+    const EnElCarrito = (id) => cart.find(product => product.id === id) ? true : false;
 
-    const limpiarcarrito = () => setCart([]);
+    const BorrarProducto = (id) => setCart(cart.filter(product => product.id !== id));
 
-    const isInCart = (id) => cart.filter(producto => producto.id !== id) ? true : false;
+    const SubTotal = () => {
+        return cart.reduce((prev, act) => prev + act.comprados * act.Precio, 0);
+    }
 
-    const removerProducto = (id) => setCart(cart.filter(producto => producto.id !== id));
+    const ProductosComprados = () => cart.reduce((acumulador, productoActual) => acumulador + productoActual.comprados, 0);
 
 
 
     return (
         <CartContext.Provider value={{
-            limpiarcarrito,
-            isInCart,
-            removerProducto,
-            agregarproducto,
-            preciofinal,
-            preciodeproductos,
+            EliminarCarrito,
+            EnElCarrito,
+            BorrarProducto,
+            AgregarCarrito,
+            SubTotal,
+            ProductosComprados,
+
             cart
         }}>
             {children}

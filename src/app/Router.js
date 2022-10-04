@@ -4,14 +4,14 @@ import Layout from "../app/Layout";
 import Contacto from "../pag/contacto/Contacto";
 import ItemDetailContainer from "../componentes/ItemDetailContainer/ItemDetailContainer";
 import Cart from "../componentes/Cart/Cart"
-import { cartProvider } from "../context/cartContext";
+import CartProvider from "../context/CartContext";
 
 
 const Router = () => {
     return (
         <>
             <BrowserRouter>
-                <cartProvider>
+                <CartProvider value="producto">
                     <NavBar></NavBar>
                     <Routes>
                         <Route path="/" element={<Layout />}></Route>
@@ -20,7 +20,7 @@ const Router = () => {
                         <Route path="/Contacto" element={<Contacto />}></Route>
                         <Route path="/Carrito" element={<Cart />}></Route>
                     </Routes>
-                </cartProvider>
+                </CartProvider>
             </BrowserRouter>
         </>
     )

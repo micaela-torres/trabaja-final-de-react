@@ -1,19 +1,30 @@
 import React from 'react'
-import { useCartContext } from '../../context/cartContext';
+import { Link } from 'react-router-dom';
+import { useCartContext } from '../../context/CartContext'
+import ItemCart from '../ItemCart/ItemCart';
 
-const Cart = (producto) => {
-    const { removerProducto } = useCartContext();
+
+const Cart = () => {
+    const { cart, SubTotal } = useCartContext();
+
+    if (cart.length === 0) {
+        return (
+            <>
+                <p>No hay elementos en su carrito</p>
+                <Link to="/">Hacer compras</Link>
+            </>
+        );
+    }
 
     return (
-        <div>
-            <div>
-                <p>{producto.producto}</p>
-                <p>{producto.descripcion}</p>
-                <p>{producto.precio}</p>
-                <p>Subtotal: {producto.comprados * producto.precio}</p>
-                <button>onClick={() => removerProducto(producto.codigo)}</button>
-            </div>
-        </div>
+        <>
+            {
+                cart.map(product => <ItemCart key={product.id} product={product} />)
+            }
+            <p>
+                Total: {SubTotal()}
+            </p>
+        </>
 
     )
 }
