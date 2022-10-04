@@ -1,10 +1,13 @@
 import React from "react";
 import { Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import { useCartContext } from "../../context/cartContext";
 
 
 
 export const CartWidget = () => {
+
+
     return (
         <div>
             <Link to="/Carrito">
@@ -16,6 +19,7 @@ export const CartWidget = () => {
                     <path d="M6 5l14 1l-1 7h-13" />
                 </svg></Button>
             </Link>
+
         </div >
     )
 }

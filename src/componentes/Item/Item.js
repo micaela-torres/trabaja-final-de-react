@@ -2,21 +2,18 @@ import Card from 'react-bootstrap/Card';
 import CardGroup from 'react-bootstrap/CardGroup';
 import Button from 'react-bootstrap/Button';
 import { Link } from 'react-router-dom';
-import fotoproducto from "../../img/1001.jpg";
 import { useContext } from 'react';
-import { cartContext } from "../../context/cartContext"
+import { CartContext } from "../../context/cartContext"
 
 const Item = ({ info }) => {
-    console.log(info)
-
-    useContext(cartContext);
+    useContext(CartContext);
 
 
     return (
         <div>
             <CardGroup>
                 <Card>
-                    <Card.Img variant="top" src={fotoproducto} style={{ width: 250, height: 200 }} />
+                    <Card.Img variant="top" src={info.Imagen} />
                     <Card.Body>
                         <Card.Title>{info.Producto}</Card.Title>
                         <Card.Text>{info.Descripcion}</Card.Text>
@@ -24,7 +21,7 @@ const Item = ({ info }) => {
                         <Button variant="outline-info"><Link to={`/producto/${info.Codigo}`}>Ver detalle</Link></Button>{' '}
                     </Card.Body>
                     <Card.Footer>
-                        <small className="text-muted">Codigo: {info.codigo}</small>
+                        <small className="text-muted">Codigo: {info.Codigo}</small>
                     </Card.Footer>
                 </Card>
             </CardGroup>

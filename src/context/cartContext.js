@@ -1,7 +1,7 @@
 import React from "react";
 import { useState, useContext } from "react";
-export const cartContext = React.createContext([]);
-export const useCartContext = () => useContext(cartContext);
+export const CartContext = React.createContext([]);
+export const useCartContext = () => useContext(CartContext);
 
 
 const CartProvider = ({ children }) => {
@@ -9,9 +9,9 @@ const CartProvider = ({ children }) => {
     const [cart, setCart] = useState([]);
 
     const agregarproducto = (item, comprados) => {
-        if (isInCart(item.codigo)) {
+        if (isInCart(item.id)) {
             setCart(cart.map(producto => {
-                return producto.codigo === item.codigo ? { ...producto, comprados: producto.comprados + comprados } : producto
+                return producto.id === item.id ? { ...producto, comprados: producto.comprados + comprados } : producto
             }));
         } else {
             setCart([...cart, { ...item, comprados }]);
@@ -19,21 +19,21 @@ const CartProvider = ({ children }) => {
     };
 
     const preciofinal = () => {
-        return cart.reduce((a, b) => a + b.comprados * b.precio, 0);
+        return cart.reduce((a, b) => a + b.comprados * b.Precio, 0);
     };
 
-    const preciodeproductos = () => cart.reduce((c, actualproducto) => c + actualproducto.comprados, 0);
+    const preciodeproductos = () => cart.reduce((c, actualProducto) => c + actualProducto.comprados, 0);
 
     const limpiarcarrito = () => setCart([]);
 
-    const isInCart = (codigo) => cart.filter(producto => producto.codigo !== codigo) ? true : false;
+    const isInCart = (id) => cart.filter(producto => producto.id !== id) ? true : false;
 
-    const removerProducto = (codigo) => setCart(cart.filter(producto => producto.codigo !== codigo));
+    const removerProducto = (id) => setCart(cart.filter(producto => producto.id !== id));
 
 
 
     return (
-        <cartContext.Provider value={{
+        <CartContext.Provider value={{
             limpiarcarrito,
             isInCart,
             removerProducto,
@@ -43,7 +43,7 @@ const CartProvider = ({ children }) => {
             cart
         }}>
             {children}
-        </cartContext.Provider>
+        </CartContext.Provider>
     )
 }
 

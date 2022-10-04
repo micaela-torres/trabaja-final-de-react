@@ -14,18 +14,18 @@ const ItemDetail = ({ product }) => {
         addItem(product, comprados);
 
     }
-    console.log(product)
+
 
     return (
         <div>
 
             <CardGroup>
                 <Card>
-                    <Card.Img variant="top" src="holder.js/100px160" />
+                    <Card.Img variant="top" src={product.Imagen} />
                     <Card.Body>
-                        <Card.Title>Producto: {product.producto}</Card.Title>
-                        <Card.Text>{product.descripcion}</Card.Text>
-                        <Card.Text>$ {product.precio}</Card.Text>
+                        <Card.Title>{product.Producto}</Card.Title>
+                        <Card.Text>{product.Descripcion}</Card.Text>
+                        <Card.Text>$ {product.Precio}</Card.Text>
                         {
                             encarrito
                                 ? <Link to="/carrito">Terminar compra</Link>
@@ -35,7 +35,7 @@ const ItemDetail = ({ product }) => {
 
                     </Card.Body>
                     <Card.Footer>
-                        <small className="text-muted">Codigo: {product.codigo}</small>
+                        <small className="text-muted">Codigo: {product.Codigo}</small>
                     </Card.Footer>
                 </Card>
             </CardGroup>

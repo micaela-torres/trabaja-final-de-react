@@ -10,14 +10,24 @@ const ItemListContainer = () => {
     useEffect(() => {
         const database = getFirestore();
         const dataCollection = collection(database, 'Productos');
+
         if (marcaid) {
-            const dataFilter = query(dataCollection, where("marcaid", "===", marcaid))
+            const dataFilter = query(dataCollection, where("Marca", "==", marcaid))
             getDocs(dataFilter)
-                .then(res => setProducts(res.docs.map(productos => ({ id: productos.id, ...productos.data }))))
+                .then(res => setProducts(res.docs.map(products => ({ id: products.id, ...products.data() }))))
+
         } else {
             getDocs(dataCollection)
-                .then(res => setProducts(res.docs.map(productos => ({ id: productos.id, ...productos.data }))))
+                .then(res => setProducts(res.docs.map(products => ({ id: products.id, ...products.data() }))))
         }
+        //if (marcaid) {
+        //    const dataFilter = query(dataCollection, where("marcaid", "===", marcaid))
+        //    getDocs(dataFilter)
+        //        .then(res => setProducts(res.docs.map(productos => ({ id: res.id, ...res.data }))))
+        //} else {
+        //    getDocs(dataCollection)
+        //        .then(res => setProducts(res.docs.map(productos => ({ id: res.id, ...res.data }))))
+        //}
 
     }, [marcaid]);
 
