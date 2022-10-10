@@ -7,16 +7,18 @@ import ItemDetail from "../ItemDetail/ItemDetail";
 const ItemDetailContainer = () => {
     const [product, setProduct] = useState([]);
 
-    const { productid } = useParams();
+    const { detalleId } = useParams();
 
+    console.log(detalleId)
     useEffect(() => {
         const database = getFirestore();
-        const dataDoc = doc(database, 'Productos', '6RfDxpAbftocjJZRfj7U');
+        const dataDoc = doc(database, 'Productos', detalleId);
 
         getDoc(dataDoc)
             .then(res => setProduct({ id: res.id, ...res.data() }))
 
-    }, []);
+    }, [detalleId]);
+
 
     return (
         <>

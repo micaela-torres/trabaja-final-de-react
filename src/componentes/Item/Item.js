@@ -15,7 +15,7 @@ const Item = ({ info }) => {
                         <Card.Title>{info.Producto}</Card.Title>
                         <Card.Text>{info.Descripcion}</Card.Text>
                         <Card.Text>$ {info.Precio}</Card.Text>
-                        <Button variant="outline-info"><Link to={`/producto/${info.Codigo}`}>Ver detalle</Link></Button>{' '}
+                        <Button variant="outline-info"><Link to={`/producto/${info.id}`}>Ver detalle</Link></Button>{' '}
                     </Card.Body>
                     <Card.Footer>
                         <small className="text-muted">Codigo: {info.Codigo}</small>
