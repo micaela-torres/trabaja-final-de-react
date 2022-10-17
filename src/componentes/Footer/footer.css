@@ -1,0 +1,15 @@
+.footer {
+    background-color: aliceblue;
+    display: flex;
+    flex-direction: row;
+}
+
+.footer-texto {
+    margin-left: 60%;
+    margin-top: 2rem;
+    text-align: center;
+}
+
+.footer-img {
+    margin-left: 2rem;
+}

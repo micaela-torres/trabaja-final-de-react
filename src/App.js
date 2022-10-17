@@ -6,9 +6,9 @@ import Router from './app/Router';
 
 function App() {
   return (
-    <>
+    <div className='fondo'>
       <Router></Router>
-    </>
+    </div>
   )
 }
 

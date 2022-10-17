@@ -1,0 +1,28 @@
+.detalle {
+    margin: 2 rem;
+    align-items: center;
+    margin-top: 3%;
+    margin-left: 33%;
+}
+
+.contador {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+}
+
+.footer {
+    display: flex;
+    flex-direction: row;
+}
+
+.codigo {
+    align-items: flex-end;
+
+}
+
+.volver {
+    align-items: flex-end;
+    margin-left: 50%;
+}

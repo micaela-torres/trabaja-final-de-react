@@ -4,6 +4,7 @@ import ItemCount from '../ItemCount/ItemCount';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useCartContext } from '../../context/CartContext';
+import "../ItemDetail/itemdetail.css";
 
 const ItemDetail = ({ product }) => {
     const [encarrito, setEncarrito] = useState(false);
@@ -19,23 +20,36 @@ const ItemDetail = ({ product }) => {
     return (
         <div>
 
-            <CardGroup>
+            <CardGroup className='detalle card col-xl-3 col-md-6 col-sm-12 cardMio'>
                 <Card>
                     <Card.Img variant="top" src={product.Imagen} />
                     <Card.Body>
                         <Card.Title>{product.Producto}</Card.Title>
                         <Card.Text>{product.Descripcion}</Card.Text>
                         <Card.Text>$ {product.Precio}</Card.Text>
+                        <Card.Text>Unidad por caja: {product.Uxc}</Card.Text>
+                        <Card.Text>Stock disponible: {product.Stock}</Card.Text>
+
                         {
                             encarrito
                                 ? <Link to="/carrito">Terminar compra</Link>
                                 :
-                                <ItemCount stock={15} cuenta={1} onAdd={onAdd} />
+                                <div className='contador'>
+                                    <ItemCount stock={product.Stock} cuenta={1} onAdd={onAdd} />
+                                </div>
                         }
 
                     </Card.Body>
                     <Card.Footer>
-                        <small className="text-muted">Codigo: {product.Codigo}</small>
+                        <div className='footer'>
+                            <div className="codigo">
+                                <small className=" text-muted">Codigo: {product.Codigo}</small>
+                            </div>
+
+                            <div className='volver'>
+                                <Link to="/">Volver</Link>
+                            </div>
+                        </div>
                     </Card.Footer>
                 </Card>
             </CardGroup>

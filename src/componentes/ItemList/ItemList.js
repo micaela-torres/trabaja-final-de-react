@@ -1,4 +1,5 @@
 import Item from "../Item/Item";
+import "../ItemList/itemlist.css";
 
 const ItemList = ({ products = [] }) => {
     return (

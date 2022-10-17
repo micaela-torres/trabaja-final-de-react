@@ -1,0 +1,14 @@
+h1 {
+    text-align: center;
+    font-weight: 400;
+}
+
+.finalizar {
+    margin-left: 45%;
+}
+
+.seguir {
+    font-weight: 400;
+    margin-right: 2rem;
+    text-align: end;
+}

@@ -3,10 +3,12 @@ import React from 'react'
 import { Link } from 'react-router-dom';
 import { useCartContext } from '../../context/CartContext'
 import ItemCart from '../ItemCart/ItemCart';
+import Button from 'react-bootstrap/Button';
+import "../Cart/cart.css";
 
 
 const Cart = () => {
-    const { cart, SubTotal } = useCartContext();
+    const { cart, SubTotal, EliminarCarrito } = useCartContext();
 
     const orden = {
         buyer: {
@@ -23,6 +25,8 @@ const Cart = () => {
         const ordenCollection = collection(db, "ordenes");
         addDoc(ordenCollection, orden)
             .then(({ id }) => console.log(id))
+        EliminarCarrito()
+
     }
 
 
@@ -38,13 +42,20 @@ const Cart = () => {
 
     return (
         <>
+            <div className='seguir'>
+                <Link to="/">Seguir comprando</Link>
+            </div>
             {
                 cart.map(product => <ItemCart key={product.id} product={product} />)
             }
-            <p>
-                Total: {SubTotal()}
-            </p>
-            <button onClick={compraFinalizada}>Finalizar compra</button>
+            <div>
+                <h1>
+                    Total: $ {SubTotal()}
+                </h1>
+                <div className='finalizar'>
+                    <Button variant="outline-success" onClick={compraFinalizada}>Finalizar compra</Button>
+                </div>
+            </div>
         </>
 
     )

@@ -1,0 +1,9 @@
+.contadores {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.botones {
+    margin-top: 1rem;
+}
