@@ -5,6 +5,7 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useCartContext } from '../../context/CartContext';
 import "../ItemDetail/itemdetail.css";
+import Button from 'react-bootstrap/Button';
 
 const ItemDetail = ({ product }) => {
     const [encarrito, setEncarrito] = useState(false);
@@ -32,7 +33,7 @@ const ItemDetail = ({ product }) => {
 
                         {
                             encarrito
-                                ? <Link to="/carrito">Terminar compra</Link>
+                                ? <Button variant="outline-secondary"><Link to="/carrito">Terminar compra</Link></Button>
                                 :
                                 <div className='contador'>
                                     <ItemCount stock={product.Stock} cuenta={1} onAdd={onAdd} />

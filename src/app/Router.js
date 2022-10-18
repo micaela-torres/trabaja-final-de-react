@@ -3,9 +3,10 @@ import NavBar from "../componentes/Navbar/NavBar";
 import Layout from "../app/Layout";
 import Contacto from "../pag/contacto/Contacto";
 import ItemDetailContainer from "../componentes/ItemDetailContainer/ItemDetailContainer";
-import Cart from "../componentes/Cart/Cart"
+import Cart from "../componentes/Cart/Cart";
 import CartProvider from "../context/CartContext";
 import Footer from "../componentes/Footer/Footer";
+import Formulario from "../componentes/Formulario/Formulario";
 
 
 const Router = () => {
@@ -20,6 +21,7 @@ const Router = () => {
                         <Route path="/producto/:detalleId" element={<ItemDetailContainer />}></Route>
                         <Route path="/Contacto" element={<Contacto />}></Route>
                         <Route path="/Carrito" element={<Cart />}></Route>
+                        <Route path="/Formulario" element={<Formulario />}></Route>
                     </Routes>
                     <Footer></Footer>
                 </CartProvider>

@@ -1,4 +1,3 @@
-import { collection, getFirestore, addDoc } from 'firebase/firestore';
 import React from 'react'
 import { Link } from 'react-router-dom';
 import { useCartContext } from '../../context/CartContext'
@@ -8,34 +7,16 @@ import "../Cart/cart.css";
 
 
 const Cart = () => {
-    const { cart, SubTotal, EliminarCarrito } = useCartContext();
-
-    const orden = {
-        buyer: {
-            Nombre: "Micaela",
-            Email: "mica@symart.com",
-            Celular: "03515555555",
-        },
-        items: cart.map(product => ({ id: product.id, Codigo: product.Codigo, Producto: product.Producto, Cantidad: product.comprados, Total: product.Precio })),
-        total: SubTotal(),
-    }
-
-    const compraFinalizada = () => {
-        const db = getFirestore();
-        const ordenCollection = collection(db, "ordenes");
-        addDoc(ordenCollection, orden)
-            .then(({ id }) => console.log(id))
-        EliminarCarrito()
-
-    }
-
-
+    const { cart, SubTotal } = useCartContext();
 
     if (cart.length === 0) {
         return (
             <>
-                <p>No hay elementos en su carrito</p>
-                <Link to="/">Hacer compras</Link>
+                <div className='vacio'>
+                    <p className='texto'>No hay elementos en su carrito</p>
+                    <Button variant="light"><Link to="/">Hacer compras</Link></Button>{' '}
+
+                </div>
             </>
         );
     }
@@ -43,7 +24,7 @@ const Cart = () => {
     return (
         <>
             <div className='seguir'>
-                <Link to="/">Seguir comprando</Link>
+                <Button variant="outline-secondary"><Link to="/">Seguir comprando</Link></Button>{' '}
             </div>
             {
                 cart.map(product => <ItemCart key={product.id} product={product} />)
@@ -52,9 +33,9 @@ const Cart = () => {
                 <h1>
                     Total: $ {SubTotal()}
                 </h1>
-                <div className='finalizar'>
-                    <Button variant="outline-success" onClick={compraFinalizada}>Finalizar compra</Button>
-                </div>
+                <Link to="/Formulario" className='finalizar'>
+                    <Button variant="outline-success">Finalizar compra</Button>
+                </Link>
             </div>
         </>
 

@@ -24,9 +24,6 @@ function NavBar() {
                                 <Nav.Link><Link to="/">Productos</Link></Nav.Link>
                             </href>
                             <href>
-                                <Nav.Link><Link to="/Contacto">Contacto</Link></Nav.Link>
-                            </href>
-                            <href>
                                 <NavDropdown title="Marcas" id="basic-nav-dropdown">
                                     <NavDropdown.Item><Link to="/marcas/Algabo">Algabo</Link></NavDropdown.Item>
                                     <NavDropdown.Item><Link to="/marcas/Iberia">Iberia</Link></NavDropdown.Item>
