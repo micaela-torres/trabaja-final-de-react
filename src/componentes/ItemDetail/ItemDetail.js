@@ -3,7 +3,7 @@ import CardGroup from 'react-bootstrap/CardGroup';
 import ItemCount from '../ItemCount/ItemCount';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { useCartContext } from '../../context/CartContext';
+import { useCartContext } from '../../context/cartContext';
 import "../ItemDetail/itemdetail.css";
 import Button from 'react-bootstrap/Button';
 

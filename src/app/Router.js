@@ -4,7 +4,7 @@ import Layout from "../app/Layout";
 import Contacto from "../pag/contacto/Contacto";
 import ItemDetailContainer from "../componentes/ItemDetailContainer/ItemDetailContainer";
 import Cart from "../componentes/Cart/Cart";
-import CartProvider from "../context/CartContext";
+import CartProvider from "../context/cartContext";
 import Footer from "../componentes/Footer/Footer";
 import Formulario from "../componentes/Formulario/Formulario";
 
